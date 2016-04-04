@@ -79,6 +79,8 @@ public class Heapsort {
 	    }
 	    a[j+1] = t;
 	}
+
+	print(a);
     }
 
     public static void swap(int[] a, int i, int j)
@@ -87,6 +89,7 @@ public class Heapsort {
 	a[i] = a[j];
 	a[j] = temp;
     }
+
 
     public static void heapify(int[] heap, int index, int size, int branch)
     {
@@ -123,5 +126,14 @@ public class Heapsort {
 
     public static void heapsort(int[] heap, int branch)
     {
+    	buildHeap(heap,branch);
+    	int size = heap.length;
+    	for(int i = heap.length-1; i>0; i--) 
+    	{
+    		swap(heap,0,i);
+    		size = size-1;
+    		heapify(heap,0,size,branch);
+    	}
+    	print(heap);
     }
 }
