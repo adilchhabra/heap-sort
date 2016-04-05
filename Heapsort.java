@@ -11,7 +11,7 @@ public class Heapsort {
 	
 	System.out.println ("Generating " + N + " random numbers");
 	int[] a = new int[N];
-	for (int i=0; i<N; ++i) a[i] = (int)(Math.random()*(10));	
+	for (int i=0; i<N; ++i) a[i] = (int)(Math.random()*(1<<30));	
 	//print(a);
 	// To test a particular sorting algorithm, I make a copy of the original
 	// array, and then record the current "user time".  After running the
@@ -102,6 +102,7 @@ public class Heapsort {
 		// get index of largest child
 		int largest =  firstChild;
 
+		//checks 'd' children nodes
 		for(int i=firstChild+1; i<= lastChild; i++) 
 		{
 
