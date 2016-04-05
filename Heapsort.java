@@ -11,8 +11,8 @@ public class Heapsort {
 	
 	System.out.println ("Generating " + N + " random numbers");
 	int[] a = new int[N];
-	for (int i=0; i<N; ++i) a[i] = (int)(Math.random()*(1<<30));
-
+	for (int i=0; i<N; ++i) a[i] = (int)(Math.random()*(10));	
+	//print(a);
 	// To test a particular sorting algorithm, I make a copy of the original
 	// array, and then record the current "user time".  After running the
 	// sort, I compute the elapsed time by taking the difference between the
@@ -80,7 +80,7 @@ public class Heapsort {
 	    a[j+1] = t;
 	}
 
-	print(a);
+	//print(a);
     }
 
     public static void swap(int[] a, int i, int j)
@@ -93,19 +93,24 @@ public class Heapsort {
 
     public static void heapify(int[] heap, int index, int size, int branch)
     {
-	int leftChild = index * 2 + 1;
-	int rightChild = leftChild + 1;
+	int firstChild = index * branch + 1;
+	int lastChild= firstChild + (branch-1);
 
 	// check if there are any children
-	if (leftChild < size)
+	if (firstChild < size)
 	    {
 		// get index of largest child
-		int largest = leftChild;
-		if (rightChild < size && heap[rightChild] > heap[leftChild])
-		    {
-			largest = rightChild;
-		    }
+		int largest =  firstChild;
 
+		for(int i=firstChild+1; i<= lastChild; i++) 
+		{
+
+			if (i < size && heap[i] > heap[largest])
+		    	{
+				largest = i;
+		    	}
+
+		}
 		// check if value at index is < largest child
 		if (heap[index] < heap[largest])
 		    {
@@ -121,8 +126,10 @@ public class Heapsort {
 	for (int i = heap.length / 2 - 1; i >= 0; i--)
 	    {
 		heapify(heap, i, heap.length, branch);
-	    }
+		}
+	    //print(heap);    
     }
+
 
     public static void heapsort(int[] heap, int branch)
     {
@@ -134,6 +141,6 @@ public class Heapsort {
     		size = size-1;
     		heapify(heap,0,size,branch);
     	}
-    	print(heap);
+    	//print(heap);
     }
 }
